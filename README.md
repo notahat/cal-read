@@ -36,7 +36,13 @@ use date-only format (`YYYY-MM-DD`).
 
 Errors output `{"error": "..."}` to stdout with a non-zero exit code.
 
-## Building
+## Installation
+
+```sh
+brew install notahat/tap/cal-read
+```
+
+## Building from source
 
 Requires Swift 5.9+ and macOS 14+.
 
@@ -45,6 +51,15 @@ swift build -c release
 ```
 
 The binary will be at `.build/release/cal-read`.
+
+## Releasing
+
+```sh
+./release.sh <version>
+```
+
+This builds a signed and notarized universal binary, creates a GitHub release, and
+updates the Homebrew formula.
 
 ## Permissions
 

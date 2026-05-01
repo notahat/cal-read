@@ -49,4 +49,28 @@ gh release create "v$VERSION" "$ZIP_PATH" \
     --title "v$VERSION" \
     --generate-notes
 
+echo "==> Updating Homebrew tap"
+SHA256=$(shasum -a 256 "$ZIP_PATH" | awk '{print $1}')
+TAP_DIR=$(mktemp -d)
+git clone git@github.com:notahat/homebrew-tap.git "$TAP_DIR"
+mkdir -p "$TAP_DIR/Formula"
+cat > "$TAP_DIR/Formula/cal-read.rb" << EOF
+class CalRead < Formula
+  desc "Query events from Apple Calendar"
+  homepage "https://github.com/notahat/cal-read"
+  version "$VERSION"
+  sha256 "$SHA256"
+
+  url "https://github.com/notahat/cal-read/releases/download/v#{version}/cal-read-#{version}.zip"
+
+  def install
+    bin.install "cal-read"
+  end
+end
+EOF
+git -C "$TAP_DIR" add Formula/cal-read.rb
+git -C "$TAP_DIR" commit -m "Update cal-read to v$VERSION"
+git -C "$TAP_DIR" push
+rm -rf "$TAP_DIR"
+
 echo "==> Done! https://github.com/notahat/cal-read/releases/tag/v$VERSION"
