@@ -15,6 +15,7 @@ VERSION=${1:?"Usage: $0 <version>"}
 
 TEAM_ID="EDZJE3T9P5"
 BINARY_NAME="cal-read"
+BUILD_PATH=".build/apple/Products/Release/$BINARY_NAME"
 ZIP_PATH="build/$BINARY_NAME-$VERSION.zip"
 
 echo "==> Cleaning build directory"
@@ -23,9 +24,6 @@ mkdir -p build
 
 echo "==> Building universal binary"
 swift build -c release --arch arm64 --arch x86_64
-# SwiftPM has moved its universal build output before, so ask it where the
-# binary went rather than hard-coding the path.
-BUILD_PATH="$(swift build -c release --arch arm64 --arch x86_64 --show-bin-path)/$BINARY_NAME"
 
 echo "==> Signing"
 codesign \
