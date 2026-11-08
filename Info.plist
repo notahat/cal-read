@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Embedded in the binary's __TEXT,__info_plist section by the linker flags in
+  Package.swift. macOS needs the usage description to show the Calendar
+  permission prompt when cal-read runs without a terminal app above it, such
+  as from launchd. Without it, access is denied without asking.
+-->
+<plist version="1.0">
+<dict>
+  <key>CFBundleIdentifier</key>
+  <string>com.notahat.cal-read</string>
+  <key>CFBundleName</key>
+  <string>cal-read</string>
+  <key>NSCalendarsFullAccessUsageDescription</key>
+  <string>cal-read reads your calendar events so it can print them as JSON.</string>
+</dict>
+</plist>
