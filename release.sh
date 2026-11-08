@@ -22,10 +22,10 @@ rm -rf build
 mkdir -p build
 
 echo "==> Building universal binary"
-swift build -c release --arch arm64 --arch x86_64
+swift build -c release --arch arm64
 # SwiftPM has moved its universal build output before, so ask it where the
 # binary went rather than hard-coding the path.
-BUILD_PATH="$(swift build -c release --arch arm64 --arch x86_64 --show-bin-path)/$BINARY_NAME"
+BUILD_PATH="$(swift build -c release --arch arm64 --show-bin-path)/$BINARY_NAME"
 
 echo "==> Signing"
 codesign \
