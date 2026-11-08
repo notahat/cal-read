@@ -12,16 +12,6 @@ let package = Package(
             name: "cal-read",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ],
-            // Embeds Info.plist so macOS can prompt for Calendar access when
-            // cal-read runs outside a terminal app. See the comment there.
-            linkerSettings: [
-                .unsafeFlags([
-                    "-Xlinker", "-sectcreate",
-                    "-Xlinker", "__TEXT",
-                    "-Xlinker", "__info_plist",
-                    "-Xlinker", "Info.plist",
-                ]),
             ]
         ),
     ]
