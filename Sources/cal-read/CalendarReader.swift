@@ -85,6 +85,7 @@ private extension ISO8601DateFormatter {
     static let dateOnly: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withFullDate]
+        formatter.timeZone = .current
         return formatter
     }()
 
